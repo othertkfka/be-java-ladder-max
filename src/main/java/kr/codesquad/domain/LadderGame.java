@@ -16,18 +16,17 @@ public class LadderGame {
     private Results results;
 
     public void run() {
-        try {
-            names = new Names(input.inputName());
-            results = new Results(input.inputResult());
-            ladder = new Ladder(names.size(), input.inputHeight());
+        names = new Names(input.inputName());
+        results = new Results(input.inputResult());
+        ladder = new Ladder(names.size(), input.inputHeight());
+        printLadder();
+        // 결과 확인
+        getGameResult();
+    }
 
-            output.printLadder(ladder.toString(), names.toString(), results.toString());
-
-            while (true) {
-                playLadderGameByInput(input.inputNameCommand());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void getGameResult() {
+        while (true) {
+            playLadderGameByInput(input.inputNameCommand());
         }
     }
 
@@ -54,5 +53,9 @@ public class LadderGame {
             nameResultPair.put(names.get(i), results.get(ladder.moveDown(i)));
         }
         output.printAllResult(nameResultPair);
+    }
+
+    public void printLadder() {
+        output.printLadder(ladder.toString(), names.toString(), results.toString());
     }
 }
